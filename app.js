@@ -44,10 +44,7 @@ function vygenerujSeznamReceptu(poleReceptu) {
     receptDiv.addEventListener("click", () => zobrazDetail(index));
 
     if (
-      !(
-        (localStorage.rozvareno === null) &
-        (localStorage.rozvareno === undefined)
-      )
+      !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
     ) {
       let dovar = localStorage.getItem("rozvareno");
       zobrazDetail(dovar);
