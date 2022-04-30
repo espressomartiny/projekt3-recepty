@@ -18,7 +18,7 @@ recept-hodnoceni, recept-nazev, recept-popis.
 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
 
-// 1)
+//1)
 
 vygenerujSeznamReceptu(recepty);
 
@@ -43,7 +43,7 @@ function vygenerujSeznamReceptu(poleReceptu) {
   });
 }
 
-// 2)
+//2)
 
 function hledej() {
   let vstup = document.getElementById("hledat").value;
@@ -75,4 +75,31 @@ function obedvej(jidlo) {
 }
 function dezertuj(jidlo) {
   return jidlo.kategorie === "Dezert";
+}
+
+//4)
+
+function serad() {
+  document.getElementById("recepty").innerText = "";
+  let rada = document.getElementById("razeni");
+  if (rada.value === "2") {
+    vygenerujSeznamReceptu(recepty.sort(odNejhorsich));
+  } else if (rada.value === "1") {
+    vygenerujSeznamReceptu(recepty.sort(odNejlepsich));
+  }
+}
+
+function odNejhorsich(a, b) {
+  if (a.hodnoceni > b.hodnoceni) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+function odNejlepsich(a, b) {
+  if (a.hodnoceni < b.hodnoceni) {
+    return 1;
+  } else {
+    return -1;
+  }
 }
