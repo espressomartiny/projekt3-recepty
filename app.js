@@ -41,7 +41,7 @@ function vygenerujSeznamReceptu(poleReceptu) {
     obrazekReceptu.appendChild(obrazek);
     nazevReceptu.appendChild(nazev);
 
-    receptDiv.addEventListener("click", () => zobrazDetail(recept.id));
+    receptDiv.addEventListener("click", () => {zobrazDetail(recept.id); console.log(recept.id); console.log(recepty.indexOf(recept))});
 
     if (
       !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
@@ -51,6 +51,37 @@ function vygenerujSeznamReceptu(poleReceptu) {
     }
   });
 }
+
+function vygenerujSerazenySeznam(poleReceptu) {
+    poleReceptu.forEach((recept, index) => {
+      let receptDiv = document.createElement("div");
+      receptDiv.className = "recept";
+      let obrazekReceptu = document.createElement("div");
+      obrazekReceptu.className = "recept-obrazek";
+      let obrazek = document.createElement("img");
+      obrazek.src = recept.img;
+      obrazek.alt = "obrázek pokrmu";
+      let nazevReceptu = document.createElement("div");
+      nazevReceptu.className = "recept-info";
+      nazev = document.createElement("h3");
+      nazev.innerText = recept.nadpis;
+      document.getElementById("recepty").appendChild(receptDiv);
+      receptDiv.appendChild(obrazekReceptu);
+      receptDiv.appendChild(nazevReceptu);
+      obrazekReceptu.appendChild(obrazek);
+      nazevReceptu.appendChild(nazev);
+  
+      receptDiv.addEventListener("click", () => {zobrazDetail(index); console.log(recept.id); console.log(recepty.indexOf(recept))});
+  
+      if (
+        !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
+      ) {
+        let dovar = localStorage.getItem("rozvareno");
+        zobrazDetail(dovar);
+      }
+    });
+  }
+
 
 //2)
 
@@ -94,9 +125,9 @@ function serad() {
   document.getElementById("recepty").innerText = "";
   let rada = document.getElementById("razeni");
   if (rada.value === "2") {
-    vygenerujSeznamReceptu(recepty.sort(odNejhorsich));
+    vygenerujSerazenySeznam(recepty.sort(odNejhorsich));
   } else if (rada.value === "1") {
-    vygenerujSeznamReceptu(recepty.sort(odNejlepsich));
+    vygenerujSerazenySeznam(recepty.sort(odNejlepsich));
   }
 }
 
@@ -125,7 +156,8 @@ function zobrazDetail(index) {
   document.querySelector("#recept-nazev").textContent = recepty[index].nadpis;
   document.querySelector("#recept-popis").textContent = recepty[index].popis;
   localStorage.clear();
-  localStorage.setItem("rozvareno", index);
+  localStorage.setItem("rozvareno", recepty[index].id);
 }
 
 //6)
+
