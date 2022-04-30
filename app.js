@@ -18,6 +18,9 @@ recept-hodnoceni, recept-nazev, recept-popis.
 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
 
+
+// 1)
+
 vygenerujSeznamReceptu(recepty);
 
 function vygenerujSeznamReceptu(poleReceptu) {
@@ -42,4 +45,17 @@ nazevReceptu.appendChild(nazev);
 
 });
 }
+
+// 2)
+
+function hledej() {
+    let vstup = (document.getElementById('hledat').value);
+    let nalezeneRecepty = recepty.filter(value => {
+        return (
+            value.nadpis.toLowerCase().includes(vstup.toLowerCase())
+        );
+    });
+    console.log(nalezeneRecepty)
+
+   }
 
