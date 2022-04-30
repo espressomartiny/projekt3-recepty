@@ -43,7 +43,12 @@ function vygenerujSeznamReceptu(poleReceptu) {
 
     receptDiv.addEventListener("click", () => zobrazDetail(index));
 
-    if (!(localStorage.rozvareno === null & localStorage.rozvareno === undefined)) {
+    if (
+      !(
+        (localStorage.rozvareno === null) &
+        (localStorage.rozvareno === undefined)
+      )
+    ) {
       let dovar = localStorage.getItem("rozvareno");
       zobrazDetail(dovar);
     }
@@ -58,6 +63,8 @@ function hledej() {
     return value.nadpis.toLowerCase().includes(vstup.toLowerCase());
   });
   console.log(nalezeneRecepty);
+  document.getElementById("recepty").innerText = "";
+  vygenerujSeznamReceptu(nalezeneRecepty);
 }
 
 //3)
