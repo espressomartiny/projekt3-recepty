@@ -23,7 +23,7 @@ recept-hodnoceni, recept-nazev, recept-popis.
 vygenerujSeznamReceptu(recepty);
 
 function vygenerujSeznamReceptu(poleReceptu) {
-  poleReceptu.forEach((recept) => {
+  poleReceptu.forEach((recept, index) => {
     let receptDiv = document.createElement("div");
     receptDiv.className = "recept";
     let obrazekReceptu = document.createElement("div");
@@ -40,6 +40,8 @@ function vygenerujSeznamReceptu(poleReceptu) {
     receptDiv.appendChild(nazevReceptu);
     obrazekReceptu.appendChild(obrazek);
     nazevReceptu.appendChild(nazev);
+
+    receptDiv.addEventListener("click", () => zobrazDetail(index));
   });
 }
 
@@ -102,4 +104,15 @@ function odNejlepsich(a, b) {
   } else {
     return -1;
   }
+}
+
+//5)
+function zobrazDetail(index) {
+  document.querySelector("#recept-foto").src = recepty[index].img;
+  document.querySelector("#recept-kategorie").textContent =
+    recepty[index].kategorie;
+  document.querySelector("#recept-hodnoceni").textContent =
+    recepty[index].hodnoceni;
+  document.querySelector("#recept-nazev").textContent = recepty[index].nadpis;
+  document.querySelector("#recept-popis").textContent = recepty[index].popis;
 }
