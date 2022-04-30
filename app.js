@@ -23,7 +23,7 @@ recept-hodnoceni, recept-nazev, recept-popis.
 vygenerujSeznamReceptu(recepty);
 
 function vygenerujSeznamReceptu(poleReceptu) {
-  poleReceptu.forEach((recept, index) => {
+  poleReceptu.forEach((recept) => {
     let receptDiv = document.createElement("div");
     receptDiv.className = "recept";
     let obrazekReceptu = document.createElement("div");
@@ -41,7 +41,7 @@ function vygenerujSeznamReceptu(poleReceptu) {
     obrazekReceptu.appendChild(obrazek);
     nazevReceptu.appendChild(nazev);
 
-    receptDiv.addEventListener("click", () => zobrazDetail(index));
+    receptDiv.addEventListener("click", () => zobrazDetail(recept.id));
 
     if (
       !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
