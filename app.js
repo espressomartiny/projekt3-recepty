@@ -93,6 +93,12 @@ function hledej() {
   });
   document.getElementById("recepty").innerText = "";
   vygenerujSeznamReceptu(nalezeneRecepty);
+  let rada = document.getElementById("razeni");
+  let chod = document.getElementById("kategorie");
+  if (!(vstup === "")) {
+    rada.value = "";
+    chod.value = "";
+  }
 }
 
 //3)
@@ -106,17 +112,26 @@ function filtruj() {
     vygenerujSeznamReceptu(recepty.filter(obedvej));
   } else if (chod.value === "Dezert") {
     vygenerujSeznamReceptu(recepty.filter(dezertuj));
+  } else if (chod.value === "") {
+    vygenerujSeznamReceptu(recepty);
   }
-}
 
-function snidej(jidlo) {
-  return jidlo.kategorie === "Snídaně";
-}
-function obedvej(jidlo) {
-  return jidlo.kategorie === "Hlavní jídlo";
-}
-function dezertuj(jidlo) {
-  return jidlo.kategorie === "Dezert";
+  function snidej(jidlo) {
+    return jidlo.kategorie === "Snídaně";
+  }
+  function obedvej(jidlo) {
+    return jidlo.kategorie === "Hlavní jídlo";
+  }
+  function dezertuj(jidlo) {
+    return jidlo.kategorie === "Dezert";
+  }
+  let rada = document.getElementById("razeni");
+  if ((chod.value === "Snídaně" ||
+      chod.value === "Hlavní jídlo" ||
+      chod.value === "Dezert") && (rada.value === "2" || rada.value === "1")
+  ) {
+    rada.value = "";
+  }
 }
 
 //4)
@@ -128,6 +143,17 @@ function serad() {
     vygenerujSerazenySeznam(recepty.sort(odNejhorsich));
   } else if (rada.value === "1") {
     vygenerujSerazenySeznam(recepty.sort(odNejlepsich));
+  } else if (rada.value === "") {
+    vygenerujSerazenySeznam(recepty);
+  }
+  let chod = document.getElementById("kategorie");
+  if (
+    (rada.value === "2" || rada.value === "1") &&
+    (chod.value === "Snídaně" ||
+      chod.value === "Hlavní jídlo" ||
+      chod.value === "Dezert")
+  ) {
+    chod.value = "";
   }
 }
 
