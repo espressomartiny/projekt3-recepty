@@ -14,7 +14,10 @@ recept-hodnoceni, recept-nazev, recept-popis.
 
 //1)
 
-vygenerujSeznamReceptu(recepty);
+function priNacteni() {
+    vygenerujSeznamReceptu(recepty);
+}
+
 
 function vygenerujSeznamReceptu(poleReceptu) {
   poleReceptu.forEach((recept) => {
@@ -126,9 +129,11 @@ function filtruj() {
     return jidlo.kategorie === "Dezert";
   }
   let rada = document.getElementById("razeni");
-  if ((chod.value === "Snídaně" ||
+  if (
+    (chod.value === "Snídaně" ||
       chod.value === "Hlavní jídlo" ||
-      chod.value === "Dezert") && (rada.value === "2" || rada.value === "1")
+      chod.value === "Dezert") &&
+    (rada.value === "2" || rada.value === "1")
   ) {
     rada.value = "";
   }
