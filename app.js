@@ -15,9 +15,8 @@ recept-hodnoceni, recept-nazev, recept-popis.
 //1)
 
 function priNacteni() {
-    vygenerujSeznamReceptu(recepty);
+  vygenerujSeznamReceptu(recepty);
 }
-
 
 function vygenerujSeznamReceptu(poleReceptu) {
   poleReceptu.forEach((recept) => {
@@ -43,13 +42,6 @@ function vygenerujSeznamReceptu(poleReceptu) {
       console.log(recept.id);
       console.log(recepty.indexOf(recept));
     });
-
-    if (
-      !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
-    ) {
-      let dovar = localStorage.getItem("rozvareno");
-      zobrazDetail(dovar);
-    }
   });
 }
 
@@ -77,16 +69,9 @@ function vygenerujSerazenySeznam(poleReceptu) {
       console.log(recept.id);
       console.log(recepty.indexOf(recept));
     });
-
-    if (
-      !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
-    ) {
-      let dovar = localStorage.getItem("rozvareno");
-      zobrazDetail(dovar);
-    }
   });
 }
-
+pamatuj();
 //2)
 
 function hledej() {
@@ -191,3 +176,12 @@ function zobrazDetail(index) {
 }
 
 //6)
+
+function pamatuj() {
+  if (
+    !(localStorage.rozvareno === null && localStorage.rozvareno === undefined)
+  ) {
+    let dovar = localStorage.getItem("rozvareno");
+    zobrazDetail(dovar);
+  }
+}
